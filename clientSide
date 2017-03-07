@@ -1,0 +1,38 @@
+package Socket2;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class SocketClientSide {
+	
+	public static void main(String args [])throws Exception{
+		
+		String ip="localhost";
+		 String ms;
+		int port =9999;
+		Socket ClientSocket = new Socket(ip,port);
+		Scanner k = new Scanner(System.in);
+	
+			ms="vayanasını servera bak";
+		
+		
+		
+		OutputStreamWriter opsw= new OutputStreamWriter(ClientSocket.getOutputStream());
+		PrintWriter pw = new PrintWriter(opsw);
+		pw.println(ms);
+		pw.flush();
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(ClientSocket.getInputStream()));
+		String nickname = br.readLine();
+		System.out.println("Data ffrom server  "+nickname);
+		
+		
+				
+		
+	}
+
+}
